@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   char_to_bin.c                                      :+:      :+:    :+:   */
+/*   ft_count_bit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/06 10:41:02 by tapperce          #+#    #+#             */
-/*   Updated: 2016/12/09 11:01:19 by gsotty           ###   ########.fr       */
+/*   Created: 2016/12/10 12:48:15 by gsotty            #+#    #+#             */
+/*   Updated: 2016/12/11 16:17:21 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
-#include "libft/libft.h"
 
-int		char_to_bin(char *piece)
+int				ft_count_bit(unsigned int board, int nbbits)
 {
-	int		result;
-	int		size;
-	int		i;
+	int				i;
+	int				count;
+	unsigned int	bit;
+	unsigned int	mask;
 
-	size = ft_strlen(piece) - 1;
 	i = 0;
-	while (piece[i])
+	bit = 0;
+	mask = 1;
+	count = 0;
+	while (i < nbbits)
 	{
-		if (piece[i] == '#')
-			result += ft_pow(2, size);
+		bit = (board & mask) >> i;
+		if (bit == 1)
+			count++;
+		mask <<= 1;
 		i++;
-		size--;
 	}
-	return (result);
+	return (count);
 }

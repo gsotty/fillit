@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap_board_bit.c                                :+:      :+:    :+:   */
+/*   ft_conv_board_to_bin.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/07 10:40:56 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/11 16:13:43 by gsotty           ###   ########.fr       */
+/*   Created: 2016/12/10 12:58:27 by gsotty            #+#    #+#             */
+/*   Updated: 2016/12/10 13:01:20 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
+#include <stdlib.h>
 
-unsigned int		ft_swap_board_bit(unsigned int bit,
-		t_size_board *size_board)
+unsigned int		*ft_conv_board_to_bin(char **tab)
 {
 	int				x;
-	int				tmp;
-	unsigned int	mask;
-	unsigned int	tmp_bit;
-	unsigned int	new_bit;
+	unsigned int	*tab_int;
 
 	x = 0;
-	mask = bit;
-	new_bit = bit;
-	tmp_bit = bit;
-	tmp = size_board->size_base;
-	mask = ((ft_pow(2, (tmp * tmp)) - 1) - (ft_pow(2, tmp) - 1));
-	while (x < size_board->size)
+	while (tab[x])
+		x++;
+	if (!(tab_int = (unsigned int *)malloc(sizeof(unsigned int) * x + 1)))
+		return (NULL);
+	ft_bzero(tab_int, x + 1);
+	x = 0;
+	while (tab[x])
 	{
-		tmp_bit = tmp_bit & mask;
-		tmp_bit <<= (size_board->size - tmp);
-		new_bit = (tmp_bit | (new_bit & ~mask));
-		mask <<= tmp;
+		if ((tab_int[x] = ft_verif(ft_char_to_bin(tab[x]))) == 0)
+			return (NULL);
 		x++;
 	}
-	return (new_bit);
+	tab[x] = 0;
+	return (tab_int);
 }

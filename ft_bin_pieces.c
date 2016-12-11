@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bin_pieces.c                                       :+:      :+:    :+:   */
+/*   ft_bin_pieces.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 13:57:07 by tapperce          #+#    #+#             */
-/*   Updated: 2016/12/09 11:00:43 by gsotty           ###   ########.fr       */
+/*   Created: 2016/12/10 12:43:02 by gsotty            #+#    #+#             */
+/*   Updated: 2016/12/10 12:43:04 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
 
-char	**bin_pieces(char **pieces)
+char	**ft_bin_pieces(char **pieces)
 {
 	int		i;
 	int		j;

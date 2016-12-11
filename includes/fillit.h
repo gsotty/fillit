@@ -6,7 +6,7 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 14:20:57 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/09 14:03:15 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/11 16:26:02 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 typedef struct		s_board
 {
 	unsigned int	board;
-	unsigned int	*board_tmp;
 	unsigned int	*tab_piece;
 }					t_board;
 
@@ -34,18 +33,21 @@ typedef struct		s_all
 	t_size_board	*size_board;
 }					t_all;
 
-unsigned int		*ft_conv(char **tab);
+char				*ft_bin_to_char(unsigned int n, int nbbits, int place);
+char				*ft_test_bin(const unsigned int n, const int nbbits);
+char				**ft_bin_pieces(char **pieces);
+char				**ft_store(int fd);
+int					ft_count_bit(unsigned int board, int nbbits);
+int					ft_bin_amp(unsigned int bin_piece);
+int					ft_nbr_line_bin(unsigned int bin_piece);
+int					ft_put_end_board(t_all *all);
+unsigned int		ft_char_to_bin(char *tab);
 unsigned int		ft_verif(unsigned int nbr);
-unsigned int		ft_bits(char *tab);
-char				*ft_printbit(const unsigned int n, const int nbbits,
-		int place);
-unsigned int		ft_remp(unsigned int dest, unsigned int src);
-t_board				*browse(unsigned int bin_pieces, t_all *all, int count);
-unsigned int		ft_swap_board_bit(unsigned int bit, t_size_board *size_board);
+unsigned int		ft_swap_board_bit(unsigned int bit, t_size_board
+		*size_board);
 unsigned int		ft_fill(unsigned int dest, unsigned int src);
-t_all				*ft_fillit(unsigned int *tab_int);
-char				**bin_pieces(char **pieces);
-char				**store(int fd);
-char				*ft_print_bit(const unsigned int n, const int nbbits);
+unsigned int		*ft_conv_board_to_bin(char **tab);
+t_all				*ft_fillit(unsigned int *tab_piece);
+t_all				*ft_browse(unsigned int bin_pieces, t_all *all, int count);
 
 #endif

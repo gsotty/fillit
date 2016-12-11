@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bits.c                                          :+:      :+:    :+:   */
+/*   ft_nbr_line_bin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/01 17:56:08 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/09 11:01:49 by gsotty           ###   ########.fr       */
+/*   Created: 2016/12/10 14:39:52 by gsotty            #+#    #+#             */
+/*   Updated: 2016/12/10 15:52:13 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
 
-unsigned int	ft_bits(char *tab)
+int	ft_nbr_line_bin(unsigned int bin_piece)
 {
-	int						z;
-	int						x;
-	int						c;
-	unsigned int			nbr;
-
-	z = 0;
-	x = (ft_strlen(tab) - 1);
-	nbr = 0;
-	c = 0;
-	while (c <= x && tab[z] != '\0')
-	{
-		if (tab[z] == '#' || tab[z] == '1')
-			nbr += ft_pow(2, c);
-		c++;
-		z++;
-	}
-	return (nbr);
+	if (bin_piece > 0 && bin_piece <= 15)
+		return (1);
+	else if (bin_piece >= 16 && bin_piece <= 255)
+		return (2);
+	else if (bin_piece >= 256 && bin_piece <= 4095)
+		return (3);
+	else if (bin_piece >= 4096 && bin_piece <= 65535)
+		return (4);
+	else
+		return (-1);
 }

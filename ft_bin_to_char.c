@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printbits.c                                        :+:      :+:    :+:   */
+/*   ft_bin_to_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/30 11:22:47 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/09 14:02:13 by gsotty           ###   ########.fr       */
+/*   Created: 2016/12/10 15:51:39 by gsotty            #+#    #+#             */
+/*   Updated: 2016/12/10 15:51:41 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
+#include "./includes/fillit.h"
 #include <stdlib.h>
 
-char	*ft_print_bit(const unsigned int n, const int nbbits)
+char	*ft_bin_to_char(unsigned int n, int nbbits, int place)
 {
 	int				i;
 	unsigned int	bit;
@@ -29,7 +28,10 @@ char	*ft_print_bit(const unsigned int n, const int nbbits)
 	while (i < nbbits)
 	{
 		bit = (n & mask) >> i;
-		buffer[i] = (char)('0' + bit);
+		if (bit == 0)
+			buffer[i] = '.';
+		else if (bit == 1)
+			buffer[i] = (char)('A' + place + bit);
 		mask <<= 1;
 		i++;
 	}
