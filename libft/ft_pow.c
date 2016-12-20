@@ -6,14 +6,13 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 18:09:25 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/04 06:50:41 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/11 19:09:41 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned long long int	ft_pow(unsigned long long int a,
-		unsigned long long int n)
+t_int128	ft_pow(t_int128 a, t_int128 n)
 {
 	if (n == 0)
 		return (1);

@@ -6,37 +6,39 @@
 /*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 11:16:26 by tapperce          #+#    #+#             */
-/*   Updated: 2016/12/11 17:25:37 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/20 16:39:56 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
+#include "libft/libft.h"
 
-t_all				*ft_browse(unsigned int bin_piece, t_all *all, int count)
+int		ft_browse(t_boardtype *tab_pieces, t_boardtype tab_pieces_tmp,
+		const int size)
 {
-	unsigned int	result;
-	int				nb_line;
+	t_boardtype		mask;
+	t_boardtype		pieces;
+	int				nbr_line;
 	int				amp;
 	int				i;
 
-	amp = ft_bin_amp(bin_piece);
-	nb_line = ft_nbr_line_bin(bin_piece) - 1;
-	bin_piece = ft_swap_board_bit(bin_piece, all->size_board);
-	while ((all->size_board->size - ++nb_line) >= 0)
+	mask = 1;
+	mask = ((mask << (size * size)) - 1);
+	pieces = mask & ft_swap_board_bit(tab_pieces[0], size);
+	amp = ft_bin_amp(tab_pieces_tmp, size);
+	nbr_line = ft_nbr_line_bin(tab_pieces_tmp, size);
+	while ((size - nbr_line) >= 0)
 	{
-		i = -1;
-		while ((all->size_board->size - (amp + ++i)) >= 0)
+		i = 0;
+		while ((size - (amp + i)) >= 0)
 		{
-			if ((result = ft_fill(all->board->board, bin_piece)) != 0)
-			{
-				all->board->tab_piece[count] = bin_piece;
-				all->board->board = result;
-				return (all);
-			}
-			bin_piece <<= 1;
+			if (tab_pieces_tmp == pieces)
+				return (1);
+			pieces <<= 1;
+			i++;
 		}
-		bin_piece <<= (all->size_board->size - i);
+		pieces <<= (size - i);
+		nbr_line++;
 	}
-	all->board->board = 0;
-	return (all);
+	return (0);
 }

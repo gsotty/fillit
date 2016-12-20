@@ -6,11 +6,12 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:43:02 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/10 12:43:04 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/19 11:41:58 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
+#include <stdio.h>
 
 char	**ft_bin_pieces(char **pieces)
 {
@@ -19,6 +20,8 @@ char	**ft_bin_pieces(char **pieces)
 	int		k;
 
 	i = 0;
+	if (pieces == NULL)
+		return (NULL);
 	while (pieces[i])
 	{
 		j = 0;

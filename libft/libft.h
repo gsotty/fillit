@@ -6,14 +6,17 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 08:39:57 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/04 07:08:49 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/12 11:40:30 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define INT128 unsigned __int128
 # include <string.h>
+
+typedef INT128			t_int128;
 
 typedef struct			s_list
 {
@@ -88,8 +91,7 @@ void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void					ft_putchar2(char c);
 void					ft_putstr2(char *str);
-unsigned long long int	ft_pow(unsigned long long int a,
-						unsigned long long int b);
+t_int128				ft_pow(t_int128 a, t_int128 b);
 int						ft_sqrt(int nb);
 int						ft_pair(unsigned int x);
 

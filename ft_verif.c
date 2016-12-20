@@ -6,13 +6,13 @@
 /*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 15:54:42 by tapperce          #+#    #+#             */
-/*   Updated: 2016/12/09 11:02:20 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/19 11:44:19 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
 
-static unsigned int	ft_verif_3(unsigned int nbr)
+static t_boardtype	ft_verif_3(t_boardtype nbr)
 {
 	if (nbr == 17600 || nbr == 8800 || nbr == 4400 || nbr == 1100 ||
 			nbr == 550 || nbr == 275)
@@ -29,7 +29,7 @@ static unsigned int	ft_verif_3(unsigned int nbr)
 	return (0);
 }
 
-static unsigned int	ft_verif_2(unsigned int nbr)
+static t_boardtype	ft_verif_2(t_boardtype nbr)
 {
 	if (nbr == 19968 || nbr == 9984 || nbr == 1248 || nbr == 624 ||
 			nbr == 78 || nbr == 39)
@@ -58,7 +58,7 @@ static unsigned int	ft_verif_2(unsigned int nbr)
 	return (ft_verif_3(nbr));
 }
 
-unsigned int		ft_verif(unsigned int nbr)
+t_boardtype			ft_verif(t_boardtype nbr)
 {
 	if (nbr == 61440 || nbr == 3840 || nbr == 240 || nbr == 15)
 		return (15);

@@ -6,19 +6,18 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:38:34 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/10 12:42:33 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/19 11:44:03 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
+#include "./includes/fillit.h"
 #include <stdlib.h>
 
-char	*ft_test_bin(const unsigned int n, const int nbbits)
+char	*ft_test_bin(const t_boardtype n, const int nbbits)
 {
 	int				i;
-	unsigned int	bit;
-	unsigned int	mask;
+	t_boardtype		bit;
+	t_boardtype		mask;
 	char			*buffer;
 
 	i = 0;

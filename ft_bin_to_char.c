@@ -6,18 +6,18 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 15:51:39 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/10 15:51:41 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/19 11:42:20 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
 #include <stdlib.h>
 
-char	*ft_bin_to_char(unsigned int n, int nbbits, int place)
+char	*ft_bin_to_char(t_boardtype n, int nbbits, int place)
 {
 	int				i;
-	unsigned int	bit;
-	unsigned int	mask;
+	t_boardtype		bit;
+	t_boardtype		mask;
 	char			*buffer;
 
 	i = 0;

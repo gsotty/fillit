@@ -6,7 +6,7 @@
 #    By: gsotty <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:44:40 by gsotty            #+#    #+#              #
-#    Updated: 2016/12/09 11:19:59 by gsotty           ###   ########.fr        #
+#    Updated: 2016/12/19 11:56:59 by gsotty           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,7 @@ NAME = libft.a
 
 CC = gcc
 
-FLAG =  -g -Wall -Wextra -Werror
-
-INC = libft.h
+FLAG = -Wall -Wextra -Werror
 
 SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 	  ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strncpy.c \
@@ -35,16 +33,18 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	@$(CC) $(FLAG) -c $(SRC) $(INC)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+%.o: %.c
+	$(CC) $(FLAG) -c $< -I.
 
 clean:
-	@rm -Rf libft.h.gch
-	@rm -rf *.o
+	rm -Rf libft.h.gch
+	rm -rf *.o
 
 fclean: clean
-	@rm -Rf $(NAME)
+	rm -Rf $(NAME)
 
 re: fclean all
