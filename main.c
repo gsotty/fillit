@@ -6,7 +6,7 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 14:12:47 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/19 12:30:17 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/21 18:16:37 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,43 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int			main(int argc, char **argv)
+int			ft_strlen_tab(char **pieces)
 {
-	int				size;
-	int				x;
-	int				fd;
-	char			**pieces;
-	t_boardtype		*tab_pieces;
-	t_boardtype		*tab_pieces_finish;
+	int		x;
 
 	x = 0;
+	while (pieces[x])
+	{
+		x++;
+	}
+	return (x);
+}
+
+int			main(int argc, char **argv)
+{
+	int				fd;
+	char			**pieces;
+	int				n;
+	t_boardtype		*tab_pieces;
+	t_boardtype		*tab_pieces_f;
+
+	pieces = NULL;
 	if (argc == 2)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (-1);
-		if (!(pieces = ft_bin_pieces(ft_store(fd))))
+		pieces = ft_bin_pieces(ft_store(fd, pieces));
+		n = ft_strlen_tab(pieces);
+		if (!(tab_pieces = (t_boardtype *)malloc(sizeof(t_boardtype) * n + 1)))
 			return (-1);
-		while (pieces[x])
-			x++;
-		if (!(tab_pieces = (t_boardtype *)malloc(sizeof(t_boardtype) * x + 1)))
+		tab_pieces = ft_conv_board_to_bin(pieces);
+		tab_pieces[n++] = 0;
+		if (!(tab_pieces_f = (t_boardtype *)malloc(sizeof(t_boardtype) * n)))
 			return (-1);
-		if ((tab_pieces = ft_conv_board_to_bin(pieces)) == NULL)
+		if (ft_fillit(tab_pieces, tab_pieces_f, n) == 0)
 			return (-1);
-		tab_pieces[x] = 0;
-		if (!(tab_pieces_finish = (t_boardtype *)malloc(sizeof(t_boardtype)
-						* x + 1)))
-			 return (0);
-		tab_pieces_finish[x + 1] = 0;
-		if ((size = ft_fillit(tab_pieces, tab_pieces_finish, x)) == 0)
-			return (-1);
-		if (close(fd) == -1)
-			return (-1);
+		close(fd);
 		return (0);
 	}
-	ft_putstr("usag: ./fillit source_file\n");
-	return (0);
+	ft_exit(1, "usag: ./fillit source_file");
 }

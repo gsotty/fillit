@@ -6,15 +6,13 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 13:02:55 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/20 16:23:21 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/21 14:20:18 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
 #include "stdlib.h"
 #include "unistd.h"
-
-#include "./libft/libft.h"
 
 static void	ft_putboard(char *board_finish, int size)
 {

@@ -6,11 +6,13 @@
 /*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 15:54:42 by tapperce          #+#    #+#             */
-/*   Updated: 2016/12/19 11:44:19 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/21 14:45:12 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fillit.h"
+
+#include "./libft/libft.h"
 
 static t_boardtype	ft_verif_3(t_boardtype nbr)
 {
@@ -34,7 +36,7 @@ static t_boardtype	ft_verif_2(t_boardtype nbr)
 	if (nbr == 19968 || nbr == 9984 || nbr == 1248 || nbr == 624 ||
 			nbr == 78 || nbr == 39)
 		return (39);
-	if (nbr == 35968 || nbr == 9792 || nbr == 4896 || nbr == 2248 ||
+	if (nbr == 35968 || nbr == 17984 || nbr == 8992 || nbr == 2248 ||
 			nbr == 1124 || nbr == 562)
 		return (562);
 	if (nbr == 58368 || nbr == 29184 || nbr == 3648 || nbr == 1824 ||
@@ -74,7 +76,7 @@ t_boardtype			ft_verif(t_boardtype nbr)
 	if (nbr == 35904 || nbr == 17952 || nbr == 8976 || nbr == 2244 ||
 			nbr == 1122 || nbr == 561)
 		return (561);
-	if (nbr == 19584 || nbr == 5696 || nbr == 2848 || nbr == 1224 ||
+	if (nbr == 19584 || nbr == 9792 || nbr == 4896 || nbr == 1224 ||
 			nbr == 612 || nbr == 306)
 		return (306);
 	if (nbr == 50688 || nbr == 25344 || nbr == 3168 || nbr == 1584 ||

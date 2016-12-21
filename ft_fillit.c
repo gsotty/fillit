@@ -6,7 +6,7 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 14:34:11 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/20 16:46:16 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/21 18:06:11 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,28 @@ int				ft_fill(t_boardtype *tab_pieces, t_boardtype *board, int size,
 		t_boardtype *tab_pieces_finish)
 {
 	int			x;
-	int			nbr_line;
 	t_boardtype	tab_pieces_tmp;
 	t_boardtype	comp;
 
-	x = 0;
 	comp = 1;
 	comp = ((comp << (size * size)) - 1);
-	nbr_line = ft_nbr_line_bin(tab_pieces[0], 4);
 	tab_pieces_tmp = ft_swap_board_bit(tab_pieces[0], size);
-	if (tab_pieces[0] == 0)
+	if ((x = -1) && tab_pieces[0] == 0)
 		return (1);
-	while ((tab_pieces_tmp < comp) && (x < (size * size)))
+	while ((tab_pieces_tmp <= comp) && (++x < (size * size)))
 	{
-		if (ft_browse(tab_pieces, tab_pieces_tmp, size) == 1)
+		if ((ft_browse(tab_pieces, tab_pieces_tmp, size) == 1)
+				&& (ft_remp(tab_pieces_tmp, board) == 1))
 		{
-			if (ft_remp(tab_pieces_tmp, board) == 1)
+			if (ft_fill(tab_pieces + 1, board, size, tab_pieces_finish + 1))
 			{
-				if (ft_fill(tab_pieces + 1, board, size, tab_pieces_finish + 1)
-						== 1)
-				{
-					tab_pieces_finish[0] = tab_pieces_tmp;
-					return (1);
-				}
-				else
-				{
-					*board = ~tab_pieces_tmp & *board;
-				}
+				tab_pieces_finish[0] = tab_pieces_tmp;
+				return (1);
 			}
+			else
+				*board = ~tab_pieces_tmp & *board;
 		}
 		tab_pieces_tmp <<= 1;
-		x++;
 	}
 	return (0);
 }
@@ -75,7 +66,7 @@ int				ft_board(t_boardtype *tab_pieces, t_boardtype *board, int size,
 	if (ft_fill(tab_pieces, board, size, tab_pieces_finish) == 1)
 	{
 		ft_put_end_board(tab_pieces_finish, size);
-		return (size);
+		ft_exit(0, "terminer");
 	}
 	else
 	{
@@ -86,8 +77,8 @@ int				ft_board(t_boardtype *tab_pieces, t_boardtype *board, int size,
 	return (size);
 }
 
-int				ft_fillit(t_boardtype *tab_pieces, t_boardtype
-		*tab_pieces_finish, int nbr_pieces)
+int				ft_fillit(t_boardtype *tab_pieces,
+		t_boardtype *tab_pieces_finish, int nbr_pieces)
 {
 	int			x;
 	int			size;

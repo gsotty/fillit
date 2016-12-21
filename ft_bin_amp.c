@@ -6,7 +6,7 @@
 /*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 14:37:18 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/20 10:33:48 by gsotty           ###   ########.fr       */
+/*   Updated: 2016/12/21 17:29:16 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,27 @@ int		ft_bin_amp(t_boardtype bin_piece, int size)
 {
 	int			i;
 	int			x;
+	t_boardtype	tmp;
 	t_boardtype	mask;
 	int			result;
 
 	i = 0;
 	x = 0;
-	if (bin_piece == 0 || size == 0)
-		return (0);
-	result = 0;
+	tmp = 1;
 	mask = 0;
+	result = 0;
 	while (x < size)
 	{
-	//	ft_putstr("111\n");
-		mask += 1 << i;
+		mask += tmp << i;
 		i += size;
 		x++;
 	}
-	x = 0;
-	while (x < size)
+	x = -1;
+	while (++x < size)
 	{
-	//	ft_putstr("222\n");
 		if ((bin_piece & mask) == 0)
-		{
 			result++;
-		}
 		mask <<= 1;
-		x++;
 	}
 	return (size - result);
 }
