@@ -6,7 +6,7 @@
 /*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 15:42:14 by tapperce          #+#    #+#             */
-/*   Updated: 2017/01/11 11:40:11 by gsotty           ###   ########.fr       */
+/*   Updated: 2017/01/11 14:06:37 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		main(int argc, char **argv)
 	board = NULL;
 	pieces = (NULL);
 	if (argc != 2)
-		ft_exit(1, "error");
+		ft_exit(1, "usage: ./fillit source_file");
 	if ((pieces = p_malloc(pieces)) == 0)
 		ft_exit(1, "error");
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
