@@ -3,56 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsotty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/14 14:12:47 by gsotty            #+#    #+#             */
-/*   Updated: 2016/12/21 18:16:37 by gsotty           ###   ########.fr       */
+/*   Created: 2017/01/09 15:42:14 by tapperce          #+#    #+#             */
+/*   Updated: 2017/01/12 14:30:42 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fillit.h"
-#include "./libft/libft.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "fillit.h"
 
-int			ft_strlen_tab(char **pieces)
+char	*ft_board(int ***pieces, char *board, int size)
 {
-	int		x;
-
-	x = 0;
-	while (pieces[x])
+	if (!(board = creat_board(size)))
+		ft_exit(1, "error");
+	if (fillit(pieces, board, size, 0) == 1)
 	{
-		x++;
+		ft_putstr(board);
+		ft_putstr("\n");
+		ft_exit(0, "1");
 	}
-	return (x);
+	else
+	{
+		ft_board(pieces, board, size + 1);
+		ft_exit(1, "error");
+	}
+	ft_exit(1, "error");
+	return (0);
 }
 
-int			main(int argc, char **argv)
+int		***p_malloc(int ***pieces)
 {
-	int				fd;
-	char			**pieces;
-	int				n;
-	t_boardtype		*tab_pieces;
-	t_boardtype		*tab_pieces_f;
+	int		i;
+	int		j;
 
-	pieces = NULL;
-	if (argc == 2)
+	i = 0;
+	if (!(pieces = ft_memalloc(sizeof(*pieces) * 27)))
+		return (NULL);
+	while (i < 27)
 	{
-		if ((fd = open(argv[1], O_RDONLY)) == -1)
-			return (-1);
-		pieces = ft_bin_pieces(ft_store(fd, pieces));
-		n = ft_strlen_tab(pieces);
-		if (!(tab_pieces = (t_boardtype *)malloc(sizeof(t_boardtype) * n + 1)))
-			return (-1);
-		tab_pieces = ft_conv_board_to_bin(pieces);
-		tab_pieces[n++] = 0;
-		if (!(tab_pieces_f = (t_boardtype *)malloc(sizeof(t_boardtype) * n)))
-			return (-1);
-		if (ft_fillit(tab_pieces, tab_pieces_f, n) == 0)
-			return (-1);
-		close(fd);
-		return (0);
+		j = 0;
+		if (!(pieces[i] = ft_memalloc(sizeof(**pieces) * 4)))
+			return (NULL);
+		while (j < 4)
+		{
+			if (!(pieces[i][j] = ft_memalloc(sizeof(***pieces) * 2)))
+				return (NULL);
+			j++;
+		}
+		i++;
 	}
-	ft_exit(1, "usag: ./fillit source_file");
+	return (pieces);
+}
+
+int		main(int argc, char **argv)
+{
+	int		fd;
+	int		***pieces;
+	char	*board;
+
+	board = NULL;
+	pieces = (NULL);
+	if (argc != 2)
+		ft_exit(1, "usage: ./fillit source_file");
+	if ((pieces = p_malloc(pieces)) == 0)
+		ft_exit(1, "error");
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		ft_exit(1, "error");
+	if ((pieces = get_pieces(fd, pieces)) == 0)
+		ft_exit(1, "error");
+	ft_board(pieces, board, 2);
+	return (0);
 }

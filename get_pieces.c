@@ -6,11 +6,12 @@
 /*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:15:49 by tapperce          #+#    #+#             */
-/*   Updated: 2017/01/11 14:03:30 by gsotty           ###   ########.fr       */
+/*   Updated: 2017/01/11 14:14:01 by gsotty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdlib.h>
 
 int		check_syntax(char *buf)
 {

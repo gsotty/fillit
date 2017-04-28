@@ -6,7 +6,7 @@
 #    By: gsotty <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/09 10:29:31 by gsotty            #+#    #+#              #
-#    Updated: 2016/12/21 16:53:29 by gsotty           ###   ########.fr        #
+#    Updated: 2017/01/11 14:09:01 by gsotty           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,8 @@ LIBFT = ./libft
 
 INCLUDES = ./includes
 
-SRC = main.c ft_bin_amp.c ft_bin_pieces.c ft_bin_to_char.c \
-	  browse.c ft_char_to_bin.c ft_conv_board_to_bin.c \
-	  ft_fillit.c ft_nbr_line_bin.c ft_put_end_board.c \
-	  ft_store.c ft_swap_board_bit.c ft_test_bin.c ft_verif.c \
-	  ft_exit.c
+SRC = check_exist.c creat_board.c fillit.c ft_exit.c get_pieces.c main.c \
+	  store_piece.c 
 
 OBJ = $(SRC:.c=.o)
 
